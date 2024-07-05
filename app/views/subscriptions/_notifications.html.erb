@@ -1,0 +1,12 @@
+<%= button_tag(
+      "Subcribe",
+      type: :submit,
+      data: {
+        controller: "subscribe",
+        action: "subscribe#subscribe",
+        subscribe_sw_path_value: asset_path("sw.js"),
+        subscribe_user_id_value: current_user.id,
+        subscribe_path_value: subscriptions_path,
+        subscribe_key_value: Rails.application.credentials.dig(:webpush, :public_key).tr("_-", "/+")
+      }
+    ) %>
