@@ -1,6 +1,7 @@
-<h1 class="text-3xl font-bold underline">
-  Hello world!
-  <%= current_user.name %>
+<h1 class="text-3xl font-bold">
+  タスク一覧
 </h1>
 
-<%= render "subscriptions/notifications" %>
+<div class="flex flex-col gap-6">
+  <%= render partial: "tasks/task", collection: @tasks %>
+</div>

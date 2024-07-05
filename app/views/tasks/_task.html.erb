@@ -1,0 +1,17 @@
+<div class="card shadow-xl">
+  <div class="card-body flex flex-col gap-3">
+    <div class="flex gap-4 items-center">
+      <span class="font-bold">日時</span>
+      <span class="font-bold">
+        <%= l(task.scheduled_at.to_datetime) %>
+      </span>
+    </div>
+    <p class="font-bold">
+      <%= task.content %>
+    </p>
+    <div class="card-actions justify-between items-center">
+      <%= link_to '編集', edit_task_path(task), class: "btn btn-primary" %>
+      <%= button_to '削除', task_path(task), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-error' %>
+    </div>
+  </div>
+</div>
