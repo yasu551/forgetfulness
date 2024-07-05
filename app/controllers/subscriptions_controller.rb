@@ -4,8 +4,8 @@ class SubscriptionsController < ApplicationController
     if subscription.save
       Notification.create(
         user: current_user,
-        title: "Great!",
-        body: "You've got subscribe to the push manager."
+        title: "通知を受け取れるようになりました",
+        body: "タスクをする時間の5分前に通知します"
       )
       render json: { status: :ok }
     else

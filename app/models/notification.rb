@@ -4,10 +4,12 @@ class Notification < ApplicationRecord
 
   validates :title, presence: true
   validates :body, presence: true
+  validates :run_at, presence: true
 
-  after_create :push
-
-  private
+  before_validation :set_run_at, if: -> { run_at.blank? }
+  after_create do
+    NotificationJob.set(wait_until: run_at).perform_later(notification_id: id)
+  end
 
   def push
     subscriptions.default_order.each do |subscription|
@@ -28,5 +30,11 @@ class Notification < ApplicationRecord
     rescue WebPush::ResponseError => e
       logger.error "WebPush Error: #{e.message}"
     end
+  end
+
+  private
+
+  def set_run_at
+    self.run_at = Time.current
   end
 end

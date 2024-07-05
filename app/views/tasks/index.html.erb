@@ -1,6 +1,10 @@
-<h1 class="text-3xl font-bold">
+<h1 class="text-3xl font-bold mb-5">
   タスク一覧
 </h1>
+
+<div class="flex mb-5">
+  <%= link_to '新規作成', new_task_path, class: 'btn' %>
+</div>
 
 <div class="flex flex-col gap-6">
   <%= render partial: "tasks/task", collection: @tasks %>

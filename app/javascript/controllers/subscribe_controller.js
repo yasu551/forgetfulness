@@ -36,11 +36,11 @@ export default class extends Controller {
       .then((registration) => registration.pushManager.getSubscription())
       .then((subscription) => {
         if (!subscription) {
-          this.updateButtonProps({ text: "Subscribe", action: "subscribe" });
+          this.updateButtonProps({ text: "通知を受け取る", action: "subscribe" });
           return;
         }
 
-        this.updateButtonProps({ text: "Unsubscribe", action: "unsubscribe" });
+        this.updateButtonProps({ text: "通知を受け取らない", action: "unsubscribe" });
       });
   }
 
@@ -94,7 +94,7 @@ export default class extends Controller {
             ]),
           }).then(() => {
             this.updateButtonProps({
-              text: "Unsubscribe",
+              text: "通知を受け取らない",
               action: "unsubscribe",
             });
           });
@@ -133,7 +133,7 @@ export default class extends Controller {
               ["subscription[user_id]", this.userIdValue],
             ]),
           }).then(() => {
-            this.updateButtonProps({ text: "Subscribe", action: "subscribe" });
+            this.updateButtonProps({ text: "通知を受け取る", action: "subscribe" });
           });
         });
       })
