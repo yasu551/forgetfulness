@@ -9,6 +9,14 @@
     <p class="font-bold mb-5">
       <%= task.content %>
     </p>
+    <div class="flex items-center gap-3">
+      <span class="font-bold">必要なもの：</span>
+      <div class="flex gap-2 items-center">
+        <% task.items.split(",").each do |item| %>
+          <span class="badge badge-accent font-bold"><%= item %></span>
+        <% end %>
+      </div>
+    </div>
     <div class="card-actions justify-between items-center">
       <%= link_to '編集', edit_task_path(task), class: "btn btn-primary" %>
       <%= button_to '削除', task_path(task), method: :delete, data: { turbo_confirm: "本当に削除しますか？" }, class: 'btn btn-error' %>

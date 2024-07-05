@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_05_050110) do
+ActiveRecord::Schema[7.1].define(version: 2024_07_05_054013) do
   create_table "delayed_jobs", force: :cascade do |t|
     t.integer "priority", default: 0, null: false
     t.integer "attempts", default: 0, null: false
@@ -52,6 +52,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_05_050110) do
     t.integer "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "items", default: "", null: false
     t.index ["user_id"], name: "index_tasks_on_user_id"
   end
 
