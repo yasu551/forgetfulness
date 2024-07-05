@@ -4,7 +4,7 @@ class Task < ApplicationRecord
   validates :content, presence: true
   validates :scheduled_at, presence: true
 
-  scope :default_order, -> { order(:scheduled_at) }
+  scope :default_order, -> { order(scheduled_at: :asc) }
 
   after_create do
     update_items!

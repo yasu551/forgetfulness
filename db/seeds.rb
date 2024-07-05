@@ -6,7 +6,7 @@ user.subscriptions.delete_all
 user.notifications.delete_all
 user.tasks.delete_all
 
-start_time = "2024-07-05 18:00:00".in_time_zone
+start_time = "2024-07-05 18:00:00".to_datetime
 task_contents = %w[
   外に出る前に財布をポケットに入れる
   電車から出る前にお土産を持つ
