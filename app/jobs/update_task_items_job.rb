@@ -1,7 +1,7 @@
 class UpdateTaskItemsJob < ApplicationJob
   queue_as :default
 
-  def perform(task_id)
+  def perform(task_id:)
     task = Task.find_by(id: task_id)
     return if task.blank?
 

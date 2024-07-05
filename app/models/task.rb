@@ -6,9 +6,10 @@ class Task < ApplicationRecord
 
   scope :default_order, -> { order(:scheduled_at) }
 
-  after_create :create_notification!
   after_create do
-    UpdateTaskItemsJob.set(wait_until: 3.seconds.ago).perform_later(task_id: :id)
+    update_items!
+    create_notification!
+    # UpdateTaskItemsJob.perform_later(task_id: :id)
   end
 
   def update_items!
@@ -31,9 +32,14 @@ class Task < ApplicationRecord
   private
 
   def create_notification!
+    body = <<~BODY
+      #{content}
+      
+      必要なもの： #{items}
+    BODY
     user.notifications.create!(
       title: 'タスクをする時間の５分前です',
-      body: content,
+      body:,
       run_at: scheduled_at.in_time_zone - 5.minutes
     )
   end
