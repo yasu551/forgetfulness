@@ -25,7 +25,6 @@ class Task < ApplicationRecord
         messages:
       }
     )
-    p response.dig("choices", 0, "message", "content")
     update!(items: response.dig("choices", 0, "message", "content").strip)
   end
 
